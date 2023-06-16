@@ -4,14 +4,17 @@
 <mapper namespace="com.gznznzjsn.outstagram.repository.AccountRepository">
 
     <resultMap id="AccountResultMap" type="Account" autoMapping="false">
-<!--        <id column="account_id" property="id"/>-->
-        <result column="account_name" property="name"/>
+        <id column="id" property="id"/>
+<!--        <result column="account_name" property="name"/>-->
     </resultMap>
 
-    <insert id="create" useGeneratedKeys="">
+    <insert id="create" >
         create (
             a:ACCOUNT {
-                        name: #{name}
+                        name: #{name},
+                        description: #{description},
+                        is_private: #{isPrivate},
+                        created_at: #{createdAt}
             }
         )
         return a

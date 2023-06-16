@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.Set;
-import java.util.UUID;
 
 @Data
 @Builder
@@ -18,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Account {
 
-    private UUID id;
+    private String id;
     private String name;
     private String description;
     private Boolean isPrivate;
