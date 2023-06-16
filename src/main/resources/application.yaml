@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: org.neo4j.jdbc.http.HttpDriver
+    name: neo4j
+    password: password
+    url: jdbc:neo4j:http://localhost:7474
+
+mybatis:
+  config-location: classpath:db/mybatis/config.xml
+  mapper-locations: classpath:db/mybatis/mapper/*.xml
+  type-aliases-package: com.gznznzjsn.outstagram.model
