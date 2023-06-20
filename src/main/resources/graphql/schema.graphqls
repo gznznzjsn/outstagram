@@ -1,12 +1,21 @@
 type Mutation {
+
     createAccount(
         name: String!
         description: String!
         isPrivate: Boolean!
     ): Boolean
+
+    subscribeToAccount(
+        sourceId: ID!
+        targetId: ID!
+    ): Boolean
+
 }
 
 type Query{
+
     doNothing: Boolean
+
 }
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gznznzjsn.outstagram.repository.SubscriptionRepository">
+
+    <insert id="create">
+        match (a:ACCOUNT), (b:ACCOUNT)
+        where a.id = #{source.id} and b.id = #{target.id}
+        create (a)-[r:SUBSCRIBED {
+                created_at: #{createdAt}
+        }]->(b)
+    </insert>
+
+</mapper>
