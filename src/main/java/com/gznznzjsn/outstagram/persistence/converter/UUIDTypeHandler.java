@@ -20,17 +20,29 @@ public class UUIDTypeHandler extends BaseTypeHandler<UUID> {
 
     @Override
     public UUID getNullableResult(ResultSet resultSet, String s) throws SQLException {
-        return resultSet.getObject(s, UUID.class);
+        String value = resultSet.getString(s);
+        if (value == null) {
+            return null;
+        }
+        return UUID.fromString(value);
     }
 
     @Override
     public UUID getNullableResult(ResultSet resultSet, int i) throws SQLException {
-        return resultSet.getObject(i, UUID.class);
+        String value = resultSet.getString(i);
+        if (value == null) {
+            return null;
+        }
+        return UUID.fromString(value);
     }
 
     @Override
     public UUID getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
-        return callableStatement.getObject(i, UUID.class);
+        String value = callableStatement.getString(i);
+        if (value == null) {
+            return null;
+        }
+        return UUID.fromString(value);
     }
 
 }

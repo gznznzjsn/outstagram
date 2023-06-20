@@ -20,17 +20,29 @@ public class LocalDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> {
 
     @Override
     public LocalDateTime getNullableResult(ResultSet resultSet, String s) throws SQLException {
-        return resultSet.getObject(s, LocalDateTime.class);
+        String value = resultSet.getString(s);
+        if (value == null) {
+            return null;
+        }
+        return LocalDateTime.parse(value);
     }
 
     @Override
     public LocalDateTime getNullableResult(ResultSet resultSet, int i) throws SQLException {
-        return resultSet.getObject(i, LocalDateTime.class);
+        String value = resultSet.getString(i);
+        if (value == null) {
+            return null;
+        }
+        return LocalDateTime.parse(value);
     }
 
     @Override
     public LocalDateTime getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
-        return callableStatement.getObject(i, LocalDateTime.class);
+        String value = callableStatement.getString(i);
+        if (value == null) {
+            return null;
+        }
+        return LocalDateTime.parse(value);
     }
 
 }
