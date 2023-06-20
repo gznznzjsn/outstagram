@@ -7,5 +7,6 @@
     </typeAliases>
     <typeHandlers>
         <typeHandler handler="com.gznznzjsn.outstagram.repository.converter.LocalDateTimeTypeHandler" />
+        <typeHandler handler="com.gznznzjsn.outstagram.repository.converter.UUIDTypeHandler" />
     </typeHandlers>
 </configuration>
