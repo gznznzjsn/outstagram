@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -20,20 +21,18 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public void subscribe(UUID sourceId, UUID targetId) {
         if (sourceId.equals(targetId)) {
-            throw new IllegalActionException("You cannot subscribe to yourself");
+            throw new IllegalActionException("You can't subscribe to yourself");
         }
+        var source = Account.builder()
+                .id(sourceId)
+                .build();
+        var target = Account.builder()
+                .id(targetId)
+                .build();
         var subscription = Subscription.builder()
                 .id(UUID.randomUUID())
-                .source(
-                        Account.builder()
-                                .id(sourceId)
-                                .build()
-                )
-                .target(
-                        Account.builder()
-                                .id(targetId)
-                                .build()
-                )
+                .source(source)
+                .target(target)
                 .createdAt(LocalDateTime.now())
                 .build();
         repository.create(subscription);
@@ -41,21 +40,24 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public void unsubscribe(UUID sourceId, UUID targetId) {
+        var source = Account.builder()
+                .id(sourceId)
+                .build();
+        var target = Account.builder()
+                .id(targetId)
+                .build();
         var subscription = Subscription.builder()
                 .id(UUID.randomUUID())
-                .source(
-                        Account.builder()
-                                .id(sourceId)
-                                .build()
-                )
-                .target(
-                        Account.builder()
-                                .id(targetId)
-                                .build()
-                )
+                .source(source)
+                .target(target)
                 .createdAt(LocalDateTime.now())
                 .build();
         repository.delete(subscription);
+    }
+
+    @Override
+    public List<Subscription> retrieveSubscriptions(UUID accountId) {
+        return repository.readSubscriptions(accountId);
     }
 
 }

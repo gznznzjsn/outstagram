@@ -3,18 +3,32 @@
 
 <mapper namespace="com.gznznzjsn.outstagram.persistence.repository.SubscriptionRepository">
 
+    <resultMap id="SubscriptionMap" type="Subscription" autoMapping="false">
+        <result column="subscription_id" property="id"/>
+        <result column="created_at" property="createdAt"/>
+    </resultMap>
+
     <insert id="create">
         match (a:ACCOUNT), (b:ACCOUNT)
         where a.id = #{source.id} and b.id = #{target.id}
         create (a)-[:SUBSCRIBED {
+                id: #{id},
                 created_at: #{createdAt}
         }]->(b)
     </insert>
 
     <insert id="delete">
-        match (a:ACCOUNT)-[s:SUBSCRIBED]->  (b:ACCOUNT)
+        match (a:ACCOUNT) -[s:SUBSCRIBED]-> (b:ACCOUNT)
         where a.id = #{source.id} and b.id = #{target.id}
         delete s
     </insert>
+
+    <select id="readSubscriptions" resultMap="SubscriptionMap">
+        match (a:ACCOUNT) -[s:SUBSCRIBED]-> (:ACCOUNT)
+        where a.id = #{accountId}
+        return
+            s.id as subscription_id,
+            s.created_at as created_at
+    </select>
 
 </mapper>

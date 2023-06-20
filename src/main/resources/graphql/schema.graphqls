@@ -20,7 +20,14 @@ type Mutation {
 
 type Query{
 
-    doNothing: Boolean
+    getSubscriptions(
+        accountId: ID!
+    ): [MySubscription!]
 
+}
+
+type MySubscription {
+    id: ID!
+    createdAt: String!
 }
 
