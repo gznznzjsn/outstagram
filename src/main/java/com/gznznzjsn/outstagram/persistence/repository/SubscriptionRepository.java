@@ -8,4 +8,6 @@ public interface SubscriptionRepository {
 
     void create(Subscription subscription);
 
+    void delete(Subscription subscription);
+
 }

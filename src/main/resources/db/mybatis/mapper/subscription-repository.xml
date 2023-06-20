@@ -6,9 +6,15 @@
     <insert id="create">
         match (a:ACCOUNT), (b:ACCOUNT)
         where a.id = #{source.id} and b.id = #{target.id}
-        create (a)-[r:SUBSCRIBED {
+        create (a)-[:SUBSCRIBED {
                 created_at: #{createdAt}
         }]->(b)
+    </insert>
+
+    <insert id="delete">
+        match (a:ACCOUNT)-[s:SUBSCRIBED]->  (b:ACCOUNT)
+        where a.id = #{source.id} and b.id = #{target.id}
+        delete s
     </insert>
 
 </mapper>

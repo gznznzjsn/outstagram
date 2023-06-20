@@ -39,4 +39,23 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         repository.create(subscription);
     }
 
+    @Override
+    public void unsubscribe(UUID sourceId, UUID targetId) {
+        var subscription = Subscription.builder()
+                .id(UUID.randomUUID())
+                .source(
+                        Account.builder()
+                                .id(sourceId)
+                                .build()
+                )
+                .target(
+                        Account.builder()
+                                .id(targetId)
+                                .build()
+                )
+                .createdAt(LocalDateTime.now())
+                .build();
+        repository.delete(subscription);
+    }
+
 }

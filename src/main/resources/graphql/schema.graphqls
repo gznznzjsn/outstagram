@@ -11,6 +11,11 @@ type Mutation {
         targetId: ID!
     ): Boolean
 
+    unsubscribeFromAccount(
+        sourceId: ID!
+        targetId: ID!
+    ): Boolean
+
 }
 
 type Query{

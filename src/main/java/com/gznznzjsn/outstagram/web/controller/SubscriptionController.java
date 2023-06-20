@@ -22,4 +22,12 @@ public class SubscriptionController {
         service.subscribe(sourceId, targetId);
     }
 
+    @MutationMapping(name = "unsubscribeFromAccount")
+    public void unsubscribe(
+            @Argument UUID sourceId,
+            @Argument UUID targetId
+    ) {
+        service.unsubscribe(sourceId, targetId);
+    }
+
 }
