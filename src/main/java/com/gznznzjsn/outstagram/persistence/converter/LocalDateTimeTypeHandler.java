@@ -1,4 +1,4 @@
-package com.gznznzjsn.outstagram.repository.converter;
+package com.gznznzjsn.outstagram.persistence.converter;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;

@@ -1,7 +1,7 @@
 package com.gznznzjsn.outstagram.service.impl;
 
 import com.gznznzjsn.outstagram.model.node.Account;
-import com.gznznzjsn.outstagram.repository.AccountRepository;
+import com.gznznzjsn.outstagram.persistence.repository.AccountRepository;
 import com.gznznzjsn.outstagram.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

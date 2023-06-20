@@ -6,7 +6,7 @@
         <typeAlias type="com.gznznzjsn.outstagram.model.node.Account" alias="Account"/>
     </typeAliases>
     <typeHandlers>
-        <typeHandler handler="com.gznznzjsn.outstagram.repository.converter.LocalDateTimeTypeHandler" />
-        <typeHandler handler="com.gznznzjsn.outstagram.repository.converter.UUIDTypeHandler" />
+        <typeHandler handler="com.gznznzjsn.outstagram.persistence.converter.LocalDateTimeTypeHandler" />
+        <typeHandler handler="com.gznznzjsn.outstagram.persistence.converter.UUIDTypeHandler" />
     </typeHandlers>
 </configuration>

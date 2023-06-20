@@ -1,4 +1,4 @@
-package com.gznznzjsn.outstagram.repository;
+package com.gznznzjsn.outstagram.persistence.repository;
 
 import com.gznznzjsn.outstagram.model.relationship.Subscription;
 import org.apache.ibatis.annotations.Mapper;

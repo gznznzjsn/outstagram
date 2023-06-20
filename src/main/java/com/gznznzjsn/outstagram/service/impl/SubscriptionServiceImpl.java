@@ -3,7 +3,7 @@ package com.gznznzjsn.outstagram.service.impl;
 import com.gznznzjsn.outstagram.model.exception.IllegalActionException;
 import com.gznznzjsn.outstagram.model.node.Account;
 import com.gznznzjsn.outstagram.model.relationship.Subscription;
-import com.gznznzjsn.outstagram.repository.SubscriptionRepository;
+import com.gznznzjsn.outstagram.persistence.repository.SubscriptionRepository;
 import com.gznznzjsn.outstagram.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
