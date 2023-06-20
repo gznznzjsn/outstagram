@@ -1,6 +1,7 @@
 package com.gznznzjsn.outstagram.model.relationship;
 
 import com.gznznzjsn.outstagram.model.node.Place;
+import com.gznznzjsn.outstagram.model.node.Post;
 import lombok.*;
 
 import java.util.UUID;
@@ -9,9 +10,10 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Placed {
+public class Placement {
 
     private UUID id;
-    private Place place;
+    private Post source;
+    private Place target;
 
 }

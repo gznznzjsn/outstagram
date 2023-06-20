@@ -1,5 +1,6 @@
 package com.gznznzjsn.outstagram.model.relationship;
 
+import com.gznznzjsn.outstagram.model.node.Post;
 import com.gznznzjsn.outstagram.model.node.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,9 +13,10 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tagged {
+public class Tagging {
 
     private UUID id;
-    private Tag tag;
+    private Post source;
+    private Tag target;
 
 }
