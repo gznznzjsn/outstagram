@@ -28,6 +28,16 @@ type Query{
 
 type MySubscription {
     id: ID!
+    source: Account!
+    target: Account!
+    createdAt: String!
+}
+
+type Account {
+    id: ID!
+    name: String!
+    description: String
+    isPrivate: Boolean!
     createdAt: String!
 }
 

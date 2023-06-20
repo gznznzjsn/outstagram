@@ -3,6 +3,14 @@
 
 <mapper namespace="com.gznznzjsn.outstagram.persistence.repository.AccountRepository">
 
+    <resultMap id="AccountMap" type="Account" autoMapping="false">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="is_private" property="isPrivate"/>
+        <result column="created_at" property="createdAt"/>
+    </resultMap>
+
     <insert id="create">
         create (
             a:ACCOUNT {

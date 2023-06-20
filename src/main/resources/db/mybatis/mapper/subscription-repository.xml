@@ -4,8 +4,14 @@
 <mapper namespace="com.gznznzjsn.outstagram.persistence.repository.SubscriptionRepository">
 
     <resultMap id="SubscriptionMap" type="Subscription" autoMapping="false">
-        <result column="subscription_id" property="id"/>
+        <id column="id" property="id"/>
         <result column="created_at" property="createdAt"/>
+        <association column="source_id" property="source" columnPrefix="source_"
+                     resultMap="com.gznznzjsn.outstagram.persistence.repository.AccountRepository.AccountMap"
+                     autoMapping="false"/>
+        <association column="target_id" property="target" columnPrefix="target_"
+                     resultMap="com.gznznzjsn.outstagram.persistence.repository.AccountRepository.AccountMap"
+                     autoMapping="false"/>
     </resultMap>
 
     <insert id="create">
@@ -24,10 +30,20 @@
     </insert>
 
     <select id="readSubscriptions" resultMap="SubscriptionMap">
-        match (a:ACCOUNT) -[s:SUBSCRIBED]-> (:ACCOUNT)
+        match (a:ACCOUNT) -[s:SUBSCRIBED]-> (b:ACCOUNT)
         where a.id = #{accountId}
         return
-            s.id as subscription_id,
+            s.id as id,
+            a.id as SOURCE_id,
+            a.name as SOURCE_name,
+            a.description as SOURCE_description,
+            a.is_private as SOURCE_is_private,
+            a.created_at as SOURCE_created_at,
+            b.id as TARGET_id,
+            b.name as TARGET_name,
+            b.description as TARGET_description,
+            b.is_private as TARGET_is_private,
+            b.created_at as TARGET_created_at,
             s.created_at as created_at
     </select>
 
