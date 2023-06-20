@@ -8,7 +8,6 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @MappedTypes(LocalDateTime.class)
@@ -32,7 +31,6 @@ public class LocalDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> {
     @Override
     public LocalDateTime getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
         return callableStatement.getObject(i, LocalDateTime.class);
-
     }
 
 }

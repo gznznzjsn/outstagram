@@ -4,6 +4,9 @@ spring:
     name: neo4j
     password: password
     url: jdbc:neo4j:http://localhost:7474
+  graphql:
+    graphiql:
+      enabled: true
 
 mybatis:
   config-location: classpath:db/mybatis/config.xml
