@@ -16,7 +16,7 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository repository;
 
     @Override
-    public void create(Account account) {
+    public void create(final Account account) {
         account.setId(UUID.randomUUID());
         account.setCreatedAt(LocalDateTime.now());
         repository.create(account);

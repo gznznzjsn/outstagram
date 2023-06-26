@@ -6,7 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class OutstagramApplication {
 
-    public static void main(String[] args) {
+    /**
+     * Run application.
+     *
+     * @param args commandline arguments
+     */
+    public static void main(final String[] args) {
         SpringApplication.run(OutstagramApplication.class, args);
     }
 

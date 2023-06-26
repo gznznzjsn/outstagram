@@ -16,8 +16,13 @@ public class AccountController {
     private final AccountService service;
     private final AccountMapper mapper;
 
+    /**
+     * Create new account.
+     *
+     * @param dto DTO of account to be created
+     */
     @MutationMapping(name = "createAccount")
-    public void create(@Arguments AccountDto dto) {
+    public void create(final @Arguments AccountDto dto) {
         Account account = mapper.toModel(dto);
         service.create(account);
     }

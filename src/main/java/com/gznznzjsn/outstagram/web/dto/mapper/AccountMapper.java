@@ -7,8 +7,20 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface AccountMapper {
 
+    /**
+     * Map {@link AccountDto} to {@link Account}.
+     *
+     * @param dto dto of account
+     * @return model of account
+     */
     Account toModel(AccountDto dto);
 
-    AccountDto toDto(Account entity);
+    /**
+     * Map {@link Account} to {@link AccountDto}.
+     *
+     * @param model model of account
+     * @return dto of account
+     */
+    AccountDto toDto(Account model);
 
 }

@@ -19,7 +19,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     private final SubscriptionRepository repository;
 
     @Override
-    public void subscribe(UUID sourceId, UUID targetId) {
+    public void subscribe(final UUID sourceId, final UUID targetId) {
         if (sourceId.equals(targetId)) {
             throw new IllegalActionException("You can't subscribe to yourself");
         }
@@ -39,7 +39,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public void unsubscribe(UUID sourceId, UUID targetId) {
+    public void unsubscribe(final UUID sourceId, final UUID targetId) {
         var source = Account.builder()
                 .id(sourceId)
                 .build();
@@ -56,12 +56,12 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public List<Subscription> retrieveSubscriptions(UUID accountId) {
+    public List<Subscription> retrieveSubscriptions(final UUID accountId) {
         return repository.readSubscriptions(accountId);
     }
 
     @Override
-    public List<Subscription> retrieveSubscribers(UUID accountId) {
+    public List<Subscription> retrieveSubscribers(final UUID accountId) {
         return repository.readSubscribers(accountId);
     }
 

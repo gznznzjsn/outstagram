@@ -19,32 +19,60 @@ public class SubscriptionController {
     private final SubscriptionService service;
     private final SubscriptionMapper mapper;
 
+    /**
+     * Subscribe source account to target account.
+     *
+     * @param sourceId id of source account
+     * @param targetId id of target account
+     */
     @MutationMapping(name = "subscribeToAccount")
     public void subscribe(
-            @Argument UUID sourceId,
-            @Argument UUID targetId
+            final @Argument UUID sourceId,
+            final @Argument UUID targetId
     ) {
         service.subscribe(sourceId, targetId);
     }
 
+    /**
+     * Subscribe source account to target account.
+     *
+     * @param sourceId id of source account
+     * @param targetId id of target account
+     */
     @MutationMapping(name = "unsubscribeFromAccount")
     public void unsubscribe(
-            @Argument UUID sourceId,
-            @Argument UUID targetId
+            final @Argument UUID sourceId,
+            final @Argument UUID targetId
     ) {
         service.unsubscribe(sourceId, targetId);
     }
 
+    /**
+     * Get all subscriptions of account.
+     *
+     * @param accountId id of account
+     * @return DTOs of subscriptions
+     */
     @QueryMapping(name = "getSubscriptions")
-    public List<SubscriptionDto> getSubscriptions(@Argument UUID accountId) {
+    public List<SubscriptionDto> getSubscriptions(
+            final @Argument UUID accountId
+    ) {
         return service.retrieveSubscriptions(accountId)
                 .stream()
                 .map(mapper::toDto)
                 .toList();
     }
 
+    /**
+     * Get all subscribers of account.
+     *
+     * @param accountId id of account
+     * @return DTOs of subscriptions
+     */
     @QueryMapping(name = "getSubscribers")
-    public List<SubscriptionDto> getSubscribers(@Argument UUID accountId) {
+    public List<SubscriptionDto> getSubscribers(
+            final @Argument UUID accountId
+    ) {
         return service.retrieveSubscribers(accountId)
                 .stream()
                 .map(mapper::toDto)
