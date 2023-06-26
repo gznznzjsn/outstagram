@@ -60,4 +60,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return repository.readSubscriptions(accountId);
     }
 
+    @Override
+    public List<Subscription> retrieveSubscribers(UUID accountId) {
+        return repository.readSubscribers(accountId);
+    }
+
 }

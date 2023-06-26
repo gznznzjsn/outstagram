@@ -13,4 +13,6 @@ public interface SubscriptionService {
 
     List<Subscription> retrieveSubscriptions(UUID accountId);
 
+    List<Subscription> retrieveSubscribers(UUID accountId);
+
 }

@@ -24,6 +24,10 @@ type Query{
         accountId: ID!
     ): [MySubscription!]
 
+    getSubscribers(
+        accountId: ID!
+    ): [MySubscription!]
+
 }
 
 type MySubscription {

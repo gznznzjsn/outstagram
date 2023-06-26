@@ -15,4 +15,6 @@ public interface SubscriptionRepository {
 
     List<Subscription> readSubscriptions(UUID accountId);
 
+    List<Subscription> readSubscribers(UUID accountId);
+
 }

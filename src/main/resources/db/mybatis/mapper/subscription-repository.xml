@@ -47,4 +47,22 @@
             s.created_at as created_at
     </select>
 
+    <select id="readSubscribers" resultMap="SubscriptionMap">
+        match (a:ACCOUNT) -[s:SUBSCRIBED]-> (b:ACCOUNT)
+        where b.id = #{accountId}
+        return
+            s.id as id,
+            a.id as SOURCE_id,
+            a.name as SOURCE_name,
+            a.description as SOURCE_description,
+            a.is_private as SOURCE_is_private,
+            a.created_at as SOURCE_created_at,
+            b.id as TARGET_id,
+            b.name as TARGET_name,
+            b.description as TARGET_description,
+            b.is_private as TARGET_is_private,
+            b.created_at as TARGET_created_at,
+            s.created_at as created_at
+    </select>
+
 </mapper>

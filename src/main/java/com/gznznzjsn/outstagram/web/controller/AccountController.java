@@ -19,7 +19,6 @@ public class AccountController {
     @MutationMapping(name = "createAccount")
     public void create(@Arguments AccountDto dto) {
         Account account = mapper.toModel(dto);
-        System.out.println(account);
         service.create(account);
     }
 

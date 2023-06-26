@@ -43,4 +43,12 @@ public class SubscriptionController {
                 .toList();
     }
 
+    @QueryMapping(name = "getSubscribers")
+    public List<SubscriptionDto> getSubscribers(@Argument UUID accountId) {
+        return service.retrieveSubscribers(accountId)
+                .stream()
+                .map(mapper::toDto)
+                .toList();
+    }
+
 }
