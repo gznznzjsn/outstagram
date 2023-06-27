@@ -30,7 +30,7 @@ class LocalDateTimeTypeHandlerTest {
 
     @Test
     @SneakyThrows
-    public void setNonNullParameter() {
+    void setNonNullParameter() {
         var statement = mock(PreparedStatement.class);
         var time = LocalDateTime.of(1, 1, 1, 1, 1);
         int i = 1;
@@ -42,7 +42,7 @@ class LocalDateTimeTypeHandlerTest {
 
     @Test
     @SneakyThrows
-    public void setNonNullParameterWithException() {
+    void setNonNullParameterWithException() {
         var statement = mock(PreparedStatement.class);
         var time = LocalDateTime.of(1, 1, 1, 1, 1);
         int i = 1;
@@ -59,7 +59,7 @@ class LocalDateTimeTypeHandlerTest {
 
     @Test
     @SneakyThrows
-    public void getNullNullableResultFromResultSetByName() {
+    void getNullNullableResultFromResultSetByName() {
         var resultSet = mock(ResultSet.class);
         String s = "COLUMN NAME";
         when(resultSet.getString(s)).thenReturn(null);
@@ -70,7 +70,7 @@ class LocalDateTimeTypeHandlerTest {
 
     @Test
     @SneakyThrows
-    public void getNotNullNullableResultFromResultSetByName() {
+    void getNotNullNullableResultFromResultSetByName() {
         var resultSet = mock(ResultSet.class);
         String s = "COLUMN NAME";
         var time = LocalDateTime.of(1, 1, 1, 1, 1);
@@ -82,7 +82,7 @@ class LocalDateTimeTypeHandlerTest {
 
     @Test
     @SneakyThrows
-    public void getNullableResultFromResultSetByNameWithException() {
+    void getNullableResultFromResultSetByNameWithException() {
         var resultSet = mock(ResultSet.class);
         String s = "COLUMN NAME";
         when(resultSet.getString(s)).thenThrow(SQLException.class);
@@ -95,7 +95,7 @@ class LocalDateTimeTypeHandlerTest {
 
     @Test
     @SneakyThrows
-    public void getNullNullableResultFromResultSetByIndex() {
+    void getNullNullableResultFromResultSetByIndex() {
         var resultSet = mock(ResultSet.class);
         int i = 1;
         when(resultSet.getString(i)).thenReturn(null);
@@ -106,7 +106,7 @@ class LocalDateTimeTypeHandlerTest {
 
     @Test
     @SneakyThrows
-    public void getNotNullNullableResultFromResultSetByIndex() {
+    void getNotNullNullableResultFromResultSetByIndex() {
         var resultSet = mock(ResultSet.class);
         int i = 1;
         var time = LocalDateTime.of(1, 1, 1, 1, 1);
@@ -118,7 +118,7 @@ class LocalDateTimeTypeHandlerTest {
 
     @Test
     @SneakyThrows
-    public void getNullableResultFromResultSetByIndexWithException() {
+    void getNullableResultFromResultSetByIndexWithException() {
         var resultSet = mock(ResultSet.class);
         int i = 1;
         when(resultSet.getString(i)).thenThrow(SQLException.class);
@@ -131,7 +131,7 @@ class LocalDateTimeTypeHandlerTest {
 
     @Test
     @SneakyThrows
-    public void getNullNullableResultFromCallableStatementByIndex() {
+    void getNullNullableResultFromCallableStatementByIndex() {
         var statement = mock(CallableStatement.class);
         int i = 1;
         when(statement.getString(i)).thenReturn(null);
@@ -142,7 +142,7 @@ class LocalDateTimeTypeHandlerTest {
 
     @Test
     @SneakyThrows
-    public void getNotNullNullableResultFromCallableStatementByIndex() {
+    void getNotNullNullableResultFromCallableStatementByIndex() {
         var statement = mock(CallableStatement.class);
         int i = 1;
         var time = LocalDateTime.of(1, 1, 1, 1, 1);
@@ -154,7 +154,7 @@ class LocalDateTimeTypeHandlerTest {
 
     @Test
     @SneakyThrows
-    public void getNullableResultFromCallableStatementByIndexWithException() {
+    void getNullableResultFromCallableStatementByIndexWithException() {
         var statement = mock(CallableStatement.class);
         int i = 1;
         when(statement.getString(i)).thenThrow(SQLException.class);

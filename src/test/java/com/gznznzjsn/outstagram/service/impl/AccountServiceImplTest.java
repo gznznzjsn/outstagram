@@ -27,7 +27,7 @@ class AccountServiceImplTest {
     private AccountServiceImpl service;
 
     @Test
-    public void createAccountWithUnsetIdAndCreatedAt() {
+    void createAccountWithUnsetIdAndCreatedAt() {
         var account = Account.builder()
                 .name("NAME")
                 .description("DESCRIPTION")
@@ -44,7 +44,7 @@ class AccountServiceImplTest {
     }
 
     @Test
-    public void createAccountWithSetIdAndCreatedAt() {
+    void createAccountWithSetIdAndCreatedAt() {
         UUID providedId = UUID.fromString(
                 "11111111-1111-1111-1111-111111111111"
         );

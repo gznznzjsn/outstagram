@@ -33,7 +33,7 @@ class SubscriptionServiceImplTest {
     private SubscriptionServiceImpl service;
 
     @Test
-    public void subscribeToYourself() {
+    void subscribeToYourself() {
         UUID sourceId = UUID.fromString(
                 "11111111-1111-1111-1111-111111111111"
         );
@@ -48,7 +48,7 @@ class SubscriptionServiceImplTest {
     }
 
     @Test
-    public void subscribeToAnotherAccount() {
+    void subscribeToAnotherAccount() {
         UUID sourceId = UUID.fromString(
                 "11111111-1111-1111-1111-111111111111"
         );
@@ -65,7 +65,7 @@ class SubscriptionServiceImplTest {
     }
 
     @Test
-    public void unsubscribe() {
+    void unsubscribe() {
         UUID sourceId = UUID.fromString(
                 "11111111-1111-1111-1111-111111111111"
         );
@@ -82,7 +82,7 @@ class SubscriptionServiceImplTest {
     }
 
     @Test
-    public void retrieveSubscriptions() {
+    void retrieveSubscriptions() {
         UUID accountId = UUID.fromString(
                 "11111111-1111-1111-1111-111111111111"
         );
@@ -128,7 +128,7 @@ class SubscriptionServiceImplTest {
     }
 
     @Test
-    public void retrieveSubscribers() {
+    void retrieveSubscribers() {
         UUID accountId = UUID.fromString(
                 "11111111-1111-1111-1111-111111111111"
         );
