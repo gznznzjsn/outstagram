@@ -1,0 +1,22 @@
+query {
+    getSubscribers(
+        accountId: "11111111-1111-1111-1111-111111111111"
+    ) {
+        id
+        createdAt
+        source{
+            id
+            name
+            description
+            isPrivate
+            createdAt
+        }
+        target{
+            id
+            name
+            description
+            isPrivate
+            createdAt
+        }
+    }
+}

@@ -1,4 +1,4 @@
-mutation createAccount(
+mutation (
     $name: String!
     $description: String!
     $isPrivate: Boolean!

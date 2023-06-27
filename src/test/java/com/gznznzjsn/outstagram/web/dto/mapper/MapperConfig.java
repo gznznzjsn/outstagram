@@ -13,8 +13,18 @@ public class MapperConfig {
      * @return created mapper
      */
     @Bean
-    public AccountMapper testMapper() {
+    public AccountMapper accountMapper() {
         return Mappers.getMapper(AccountMapper.class);
+    }
+
+    /**
+     * Subscription mapper for tests.
+     *
+     * @return created mapper
+     */
+    @Bean
+    public SubscriptionMapper subscriptionMapper() {
+        return Mappers.getMapper(SubscriptionMapper.class);
     }
 
 }

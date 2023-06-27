@@ -29,7 +29,7 @@ class AccountControllerTest {
         String name = "NAME";
         String description = "DESCRIPTION";
         boolean isPrivate = true;
-        tester.documentName("create-account-request")
+        tester.documentName("request/create-account-request")
                 .variable("name", name)
                 .variable("description", description)
                 .variable("isPrivate", isPrivate)
