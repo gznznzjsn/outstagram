@@ -1,10 +1,10 @@
 package com.gznznzjsn.outstagram.persistence.converter;
 
-import lombok.SneakyThrows;
 import org.apache.ibatis.type.JdbcType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.sql.CallableStatement;
@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
@@ -28,39 +27,46 @@ class UUIDTypeHandlerTest {
     @InjectMocks
     private UUIDTypeHandler handler;
 
+    @Mock
+    private PreparedStatement preparedStatement;
+
+    @Mock
+    private JdbcType jdbcType;
+
+    @Mock
+    private ResultSet resultSet;
+
+    @Mock
+    private CallableStatement callableStatement;
+
     @Test
-    @SneakyThrows
-    void setNonNullParameter() {
-        var statement = mock(PreparedStatement.class);
+    void setNonNullParameter() throws SQLException {
         var id = UUID.fromString("11111111-1111-1111-1111-111111111111");
         int i = 1;
-        var jdbcType = mock(JdbcType.class);
-        handler.setNonNullParameter(statement, i, id, jdbcType);
-        verify(statement).setString(i, String.valueOf(id));
+        handler.setNonNullParameter(preparedStatement, i, id, jdbcType);
+        verify(preparedStatement).setString(i, String.valueOf(id));
         verifyNoInteractions(jdbcType);
     }
 
     @Test
-    @SneakyThrows
-    void setNonNullParameterWithException() {
-        var statement = mock(PreparedStatement.class);
+    void setNonNullParameterWithException() throws SQLException {
         var id = UUID.fromString("11111111-1111-1111-1111-111111111111");
         int i = 1;
-        var jdbcType = mock(JdbcType.class);
         doThrow(SQLException.class)
-                .when(statement).setString(i, id.toString());
+                .when(preparedStatement).setString(i, id.toString());
         assertThrows(
                 SQLException.class,
-                () -> handler.setNonNullParameter(statement, i, id, jdbcType)
+                () -> handler.setNonNullParameter(
+                        preparedStatement,
+                        i, id, jdbcType
+                )
         );
-        verify(statement).setString(i, String.valueOf(id));
+        verify(preparedStatement).setString(i, String.valueOf(id));
         verifyNoInteractions(jdbcType);
     }
 
     @Test
-    @SneakyThrows
-    void getNullNullableResultFromResultSetByName() {
-        var resultSet = mock(ResultSet.class);
+    void getNullNullableResultFromResultSetByName() throws SQLException {
         String s = "COLUMN NAME";
         when(resultSet.getString(s)).thenReturn(null);
         UUID result = handler.getNullableResult(resultSet, s);
@@ -69,9 +75,8 @@ class UUIDTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNotNullNullableResultFromResultSetByName() {
-        var resultSet = mock(ResultSet.class);
+    void getNotNullNullableResultFromResultSetByName()
+            throws SQLException {
         String s = "COLUMN NAME";
         var id = UUID.fromString("11111111-1111-1111-1111-111111111111");
         when(resultSet.getString(s)).thenReturn(id.toString());
@@ -81,9 +86,8 @@ class UUIDTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNullableResultFromResultSetByNameWithException() {
-        var resultSet = mock(ResultSet.class);
+    void getNullableResultFromResultSetByNameWithException()
+            throws SQLException {
         String s = "COLUMN NAME";
         when(resultSet.getString(s)).thenThrow(SQLException.class);
         assertThrows(
@@ -94,9 +98,7 @@ class UUIDTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNullNullableResultFromResultSetByIndex() {
-        var resultSet = mock(ResultSet.class);
+    void getNullNullableResultFromResultSetByIndex() throws SQLException {
         int i = 1;
         when(resultSet.getString(i)).thenReturn(null);
         UUID result = handler.getNullableResult(resultSet, i);
@@ -105,9 +107,8 @@ class UUIDTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNotNullNullableResultFromResultSetByIndex() {
-        var resultSet = mock(ResultSet.class);
+    void getNotNullNullableResultFromResultSetByIndex()
+            throws SQLException {
         int i = 1;
         var id = UUID.fromString("11111111-1111-1111-1111-111111111111");
         when(resultSet.getString(i)).thenReturn(id.toString());
@@ -117,9 +118,8 @@ class UUIDTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNullableResultFromResultSetByIndexWithException() {
-        var resultSet = mock(ResultSet.class);
+    void getNullableResultFromResultSetByIndexWithException()
+            throws SQLException {
         int i = 1;
         when(resultSet.getString(i)).thenThrow(SQLException.class);
         assertThrows(
@@ -130,40 +130,36 @@ class UUIDTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNullNullableResultFromCallableStatementByIndex() {
-        var statement = mock(CallableStatement.class);
+    void getNullNullableResultFromCallableStatementByIndex()
+            throws SQLException {
         int i = 1;
-        when(statement.getString(i)).thenReturn(null);
-        UUID result = handler.getNullableResult(statement, i);
+        when(callableStatement.getString(i)).thenReturn(null);
+        UUID result = handler.getNullableResult(callableStatement, i);
         assertNull(result);
-        verify(statement).getString(i);
+        verify(callableStatement).getString(i);
     }
 
     @Test
-    @SneakyThrows
-    void getNotNullNullableResultFromCallableStatementByIndex() {
-        var statement = mock(CallableStatement.class);
+    void getNotNullNullableResultFromCallableStatementByIndex()
+            throws SQLException {
         int i = 1;
         var id = UUID.fromString("11111111-1111-1111-1111-111111111111");
-        when(statement.getString(i)).thenReturn(id.toString());
-        UUID result = handler.getNullableResult(statement, i);
+        when(callableStatement.getString(i)).thenReturn(id.toString());
+        UUID result = handler.getNullableResult(callableStatement, i);
         assertEquals(id, result);
-        verify(statement).getString(i);
+        verify(callableStatement).getString(i);
     }
 
     @Test
-    @SneakyThrows
-    void getNullableResultFromCallableStatementByIndexWithException(
-    ) {
-        var statement = mock(CallableStatement.class);
+    void getNullableResultFromCallableStatementByIndexWithException()
+            throws SQLException {
         int i = 1;
-        when(statement.getString(i)).thenThrow(SQLException.class);
+        when(callableStatement.getString(i)).thenThrow(SQLException.class);
         assertThrows(
                 SQLException.class,
-                () -> handler.getNullableResult(statement, i)
+                () -> handler.getNullableResult(callableStatement, i)
         );
-        verify(statement).getString(i);
+        verify(callableStatement).getString(i);
     }
 
 }

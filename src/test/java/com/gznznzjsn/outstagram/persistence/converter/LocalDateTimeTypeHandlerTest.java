@@ -1,10 +1,10 @@
 package com.gznznzjsn.outstagram.persistence.converter;
 
-import lombok.SneakyThrows;
 import org.apache.ibatis.type.JdbcType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.sql.CallableStatement;
@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
@@ -28,39 +27,46 @@ class LocalDateTimeTypeHandlerTest {
     @InjectMocks
     private LocalDateTimeTypeHandler handler;
 
+    @Mock
+    private PreparedStatement preparedStatement;
+
+    @Mock
+    private JdbcType jdbcType;
+
+    @Mock
+    private ResultSet resultSet;
+
+    @Mock
+    private CallableStatement callableStatement;
+
     @Test
-    @SneakyThrows
-    void setNonNullParameter() {
-        var statement = mock(PreparedStatement.class);
+    void setNonNullParameter() throws SQLException {
         var time = LocalDateTime.of(1, 1, 1, 1, 1);
         int i = 1;
-        var jdbcType = mock(JdbcType.class);
-        handler.setNonNullParameter(statement, i, time, jdbcType);
-        verify(statement).setString(i, String.valueOf(time));
+        handler.setNonNullParameter(preparedStatement, i, time, jdbcType);
+        verify(preparedStatement).setString(i, String.valueOf(time));
         verifyNoInteractions(jdbcType);
     }
 
     @Test
-    @SneakyThrows
-    void setNonNullParameterWithException() {
-        var statement = mock(PreparedStatement.class);
+    void setNonNullParameterWithException() throws SQLException {
         var time = LocalDateTime.of(1, 1, 1, 1, 1);
         int i = 1;
-        var jdbcType = mock(JdbcType.class);
         doThrow(SQLException.class)
-                .when(statement).setString(i, time.toString());
+                .when(preparedStatement).setString(i, time.toString());
         assertThrows(
                 SQLException.class,
-                () -> handler.setNonNullParameter(statement, i, time, jdbcType)
+                () -> handler.setNonNullParameter(
+                        preparedStatement,
+                        i, time, jdbcType
+                )
         );
-        verify(statement).setString(i, String.valueOf(time));
+        verify(preparedStatement).setString(i, String.valueOf(time));
         verifyNoInteractions(jdbcType);
     }
 
     @Test
-    @SneakyThrows
-    void getNullNullableResultFromResultSetByName() {
-        var resultSet = mock(ResultSet.class);
+    void getNullNullableResultFromResultSetByName() throws SQLException {
         String s = "COLUMN NAME";
         when(resultSet.getString(s)).thenReturn(null);
         LocalDateTime result = handler.getNullableResult(resultSet, s);
@@ -69,9 +75,7 @@ class LocalDateTimeTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNotNullNullableResultFromResultSetByName() {
-        var resultSet = mock(ResultSet.class);
+    void getNotNullNullableResultFromResultSetByName() throws SQLException {
         String s = "COLUMN NAME";
         var time = LocalDateTime.of(1, 1, 1, 1, 1);
         when(resultSet.getString(s)).thenReturn(time.toString());
@@ -81,9 +85,8 @@ class LocalDateTimeTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNullableResultFromResultSetByNameWithException() {
-        var resultSet = mock(ResultSet.class);
+    void getNullableResultFromResultSetByNameWithException()
+            throws SQLException {
         String s = "COLUMN NAME";
         when(resultSet.getString(s)).thenThrow(SQLException.class);
         assertThrows(
@@ -94,9 +97,7 @@ class LocalDateTimeTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNullNullableResultFromResultSetByIndex() {
-        var resultSet = mock(ResultSet.class);
+    void getNullNullableResultFromResultSetByIndex() throws SQLException {
         int i = 1;
         when(resultSet.getString(i)).thenReturn(null);
         LocalDateTime result = handler.getNullableResult(resultSet, i);
@@ -105,9 +106,7 @@ class LocalDateTimeTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNotNullNullableResultFromResultSetByIndex() {
-        var resultSet = mock(ResultSet.class);
+    void getNotNullNullableResultFromResultSetByIndex() throws SQLException {
         int i = 1;
         var time = LocalDateTime.of(1, 1, 1, 1, 1);
         when(resultSet.getString(i)).thenReturn(time.toString());
@@ -117,9 +116,8 @@ class LocalDateTimeTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNullableResultFromResultSetByIndexWithException() {
-        var resultSet = mock(ResultSet.class);
+    void getNullableResultFromResultSetByIndexWithException()
+            throws SQLException {
         int i = 1;
         when(resultSet.getString(i)).thenThrow(SQLException.class);
         assertThrows(
@@ -130,39 +128,36 @@ class LocalDateTimeTypeHandlerTest {
     }
 
     @Test
-    @SneakyThrows
-    void getNullNullableResultFromCallableStatementByIndex() {
-        var statement = mock(CallableStatement.class);
+    void getNullNullableResultFromCallableStatementByIndex()
+            throws SQLException {
         int i = 1;
-        when(statement.getString(i)).thenReturn(null);
-        LocalDateTime result = handler.getNullableResult(statement, i);
+        when(callableStatement.getString(i)).thenReturn(null);
+        LocalDateTime result = handler.getNullableResult(callableStatement, i);
         assertNull(result);
-        verify(statement).getString(i);
+        verify(callableStatement).getString(i);
     }
 
     @Test
-    @SneakyThrows
-    void getNotNullNullableResultFromCallableStatementByIndex() {
-        var statement = mock(CallableStatement.class);
+    void getNotNullNullableResultFromCallableStatementByIndex()
+            throws SQLException {
         int i = 1;
         var time = LocalDateTime.of(1, 1, 1, 1, 1);
-        when(statement.getString(i)).thenReturn(time.toString());
-        LocalDateTime result = handler.getNullableResult(statement, i);
+        when(callableStatement.getString(i)).thenReturn(time.toString());
+        LocalDateTime result = handler.getNullableResult(callableStatement, i);
         assertEquals(time, result);
-        verify(statement).getString(i);
+        verify(callableStatement).getString(i);
     }
 
     @Test
-    @SneakyThrows
-    void getNullableResultFromCallableStatementByIndexWithException() {
-        var statement = mock(CallableStatement.class);
+    void getNullableResultFromCallableStatementByIndexWithException()
+            throws SQLException {
         int i = 1;
-        when(statement.getString(i)).thenThrow(SQLException.class);
+        when(callableStatement.getString(i)).thenThrow(SQLException.class);
         assertThrows(
                 SQLException.class,
-                () -> handler.getNullableResult(statement, i)
+                () -> handler.getNullableResult(callableStatement, i)
         );
-        verify(statement).getString(i);
+        verify(callableStatement).getString(i);
     }
 
 }
