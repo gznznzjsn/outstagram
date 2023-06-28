@@ -14,7 +14,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Liking {
+public class Like {
 
     private UUID id;
     private Account source;
