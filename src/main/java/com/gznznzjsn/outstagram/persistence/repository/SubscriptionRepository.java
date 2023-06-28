@@ -13,15 +13,17 @@ public interface SubscriptionRepository {
      * Create subscription relationship.
      *
      * @param subscription relationship to be created
+     * @return number of created subscriptions
      */
-    void create(Subscription subscription);
+    Long create(Subscription subscription);
 
     /**
      * Delete subscription relationship.
      *
      * @param subscription relationship to be deleted
+     * @return number of deleted subscriptions
      */
-    void delete(Subscription subscription);
+    Long delete(Subscription subscription);
 
     /**
      * Read all subscriptions of account.

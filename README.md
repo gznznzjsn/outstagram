@@ -20,8 +20,9 @@ Demo project, clone of Instagram.
 * Subscription (SUBSCRIBED_TO)
 * Tagging (TAGGED_WITH)
 
-## Upcoming features
+## TODO
 
+* Tags and places has unique names - constraint
 * Constraints for properties
 * Constraints for relationships
 * Create post
