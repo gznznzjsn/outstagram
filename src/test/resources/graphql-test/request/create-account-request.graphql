@@ -1,0 +1,7 @@
+mutation (
+    $name: String!
+    $description: String!
+    $isPrivate: Boolean!
+){
+    createAccount(name: $name, description: $description, isPrivate: $isPrivate)
+}

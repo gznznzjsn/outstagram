@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.gznznzjsn.outstagram.repository.AccountRepository">
+<mapper namespace="com.gznznzjsn.outstagram.persistence.repository.AccountRepository">
 
-    <resultMap id="AccountResultMap" type="Account" autoMapping="false">
+    <resultMap id="AccountMap" type="Account" autoMapping="false">
         <id column="id" property="id"/>
-<!--        <result column="account_name" property="name"/>-->
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="is_private" property="isPrivate"/>
+        <result column="created_at" property="createdAt"/>
     </resultMap>
 
-    <insert id="create" >
+    <insert id="create">
         create (
             a:ACCOUNT {
+                        id: #{id},
                         name: #{name},
                         description: #{description},
                         is_private: #{isPrivate},
                         created_at: #{createdAt}
             }
         )
-        return a
     </insert>
 
 </mapper>

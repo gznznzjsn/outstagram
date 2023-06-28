@@ -1,0 +1,6 @@
+mutation (
+    $sourceId: ID!
+    $targetId: ID!
+){
+    subscribeToAccount(sourceId: $sourceId, targetId: $targetId)
+}

@@ -4,8 +4,10 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.gznznzjsn.outstagram.model.node.Account" alias="Account"/>
+        <typeAlias type="com.gznznzjsn.outstagram.model.relationship.Subscription" alias="Subscription"/>
     </typeAliases>
     <typeHandlers>
-        <typeHandler handler="com.gznznzjsn.outstagram.repository.converter.LocalDateTimeTypeHandler" />
+        <typeHandler handler="com.gznznzjsn.outstagram.persistence.converter.LocalDateTimeTypeHandler"/>
+        <typeHandler handler="com.gznznzjsn.outstagram.persistence.converter.UUIDTypeHandler"/>
     </typeHandlers>
 </configuration>

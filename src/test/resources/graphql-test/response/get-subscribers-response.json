@@ -1,0 +1,42 @@
+{
+  "data": {
+    "getSubscribers": [
+      {
+        "id": "44444444-4444-4444-4444-444444444444",
+        "createdAt": "0004-04-04T04:04",
+        "source": {
+          "id": "22222222-2222-2222-2222-222222222222",
+          "name": "SOURCE 1 NAME",
+          "description": "SOURCE 1 DESCRIPTION",
+          "isPrivate": true,
+          "createdAt": "0002-02-02T02:02"
+        },
+        "target": {
+          "id": "11111111-1111-1111-1111-111111111111",
+          "name": "TARGET NAME",
+          "description": "TARGET DESCRIPTION",
+          "isPrivate": true,
+          "createdAt": "0001-01-01T01:01"
+        }
+      },
+      {
+        "id": "55555555-5555-5555-5555-555555555555",
+        "createdAt": "0005-05-05T05:05",
+        "source": {
+          "id": "33333333-3333-3333-3333-333333333333",
+          "name": "SOURCE 2 NAME",
+          "description": "SOURCE 2 DESCRIPTION",
+          "isPrivate": true,
+          "createdAt": "0003-03-03T03:03"
+        },
+        "target": {
+          "id": "11111111-1111-1111-1111-111111111111",
+          "name": "TARGET NAME",
+          "description": "TARGET DESCRIPTION",
+          "isPrivate": true,
+          "createdAt": "0001-01-01T01:01"
+        }
+      }
+    ]
+  }
+}

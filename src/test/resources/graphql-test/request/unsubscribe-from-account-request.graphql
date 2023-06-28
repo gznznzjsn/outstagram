@@ -1,0 +1,6 @@
+mutation (
+    $sourceId: ID!
+    $targetId: ID!
+){
+    unsubscribeFromAccount(sourceId: $sourceId, targetId: $targetId)
+}
