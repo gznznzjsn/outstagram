@@ -22,6 +22,8 @@ Demo project, clone of Instagram.
 
 ## TODO
 
+* Generify ListTypeHandler
+* ??Pass only needed parameters to method, not the whole entity
 * Tags and places has unique names - constraint
 * Constraints for properties
 * Constraints for relationships

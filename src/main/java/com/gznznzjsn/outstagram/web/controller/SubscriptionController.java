@@ -30,7 +30,7 @@ public class SubscriptionController {
             final @Argument UUID sourceId,
             final @Argument UUID targetId
     ) {
-        service.subscribe(sourceId, targetId);
+        service.create(sourceId, targetId);
     }
 
     /**
@@ -44,7 +44,7 @@ public class SubscriptionController {
             final @Argument UUID sourceId,
             final @Argument UUID targetId
     ) {
-        service.unsubscribe(sourceId, targetId);
+        service.delete(sourceId, targetId);
     }
 
     /**

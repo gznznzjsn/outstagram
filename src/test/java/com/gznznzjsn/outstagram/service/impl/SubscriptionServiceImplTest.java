@@ -42,7 +42,7 @@ class SubscriptionServiceImplTest {
         );
         assertThrows(
                 IllegalActionException.class,
-                () -> service.subscribe(sourceId, targetId)
+                () -> service.create(sourceId, targetId)
         );
         verify(repository, never()).create(any(Subscription.class));
     }
@@ -55,7 +55,7 @@ class SubscriptionServiceImplTest {
         UUID targetId = UUID.fromString(
                 "22222222-2222-2222-2222-222222222222"
         );
-        service.subscribe(sourceId, targetId);
+        service.create(sourceId, targetId);
         verify(repository).create(assertArg(s -> {
             assertNotNull(s.getId());
             assertEquals(sourceId, s.getSource().getId());
@@ -72,7 +72,7 @@ class SubscriptionServiceImplTest {
         UUID targetId = UUID.fromString(
                 "22222222-2222-2222-2222-222222222222"
         );
-        service.unsubscribe(sourceId, targetId);
+        service.delete(sourceId, targetId);
         verify(repository).delete(assertArg(s -> {
             assertNotNull(s.getId());
             assertEquals(sourceId, s.getSource().getId());

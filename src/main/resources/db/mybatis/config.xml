@@ -2,12 +2,19 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
     <typeAliases>
+        <typeAlias type="java.lang.String" alias="String"/>
         <typeAlias type="com.gznznzjsn.outstagram.model.node.Account" alias="Account"/>
+        <typeAlias type="com.gznznzjsn.outstagram.model.node.Place" alias="Place"/>
         <typeAlias type="com.gznznzjsn.outstagram.model.relationship.Subscription" alias="Subscription"/>
+        <typeAlias type="com.gznznzjsn.outstagram.model.relationship.Publication" alias="Publication"/>
+        <typeAlias type="com.gznznzjsn.outstagram.model.relationship.Placement" alias="Placement"/>
     </typeAliases>
+
     <typeHandlers>
         <typeHandler handler="com.gznznzjsn.outstagram.persistence.converter.LocalDateTimeTypeHandler"/>
         <typeHandler handler="com.gznznzjsn.outstagram.persistence.converter.UUIDTypeHandler"/>
+        <typeHandler handler="com.gznznzjsn.outstagram.persistence.converter.ListTypeHandler"/>
     </typeHandlers>
 </configuration>

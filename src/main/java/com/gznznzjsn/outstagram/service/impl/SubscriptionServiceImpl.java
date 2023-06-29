@@ -22,7 +22,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     @Transactional
-    public void subscribe(final UUID sourceId, final UUID targetId) {
+    public void create(final UUID sourceId, final UUID targetId) {
         if (sourceId.equals(targetId)) {
             throw new IllegalActionException("You can't subscribe to yourself");
         }
@@ -50,7 +50,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     @Transactional
-    public void unsubscribe(final UUID sourceId, final UUID targetId) {
+    public void delete(final UUID sourceId, final UUID targetId) {
         var source = Account.builder()
                 .id(sourceId)
                 .build();

@@ -16,6 +16,14 @@ type Mutation {
         targetId: ID!
     ): Boolean
 
+    createPost(
+        accountId: ID!
+        photos: [String!]!
+        description: String!
+        placeName: String
+        tagNames: [String!]!
+    ): Boolean
+
 }
 
 type Query{

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gznznzjsn.outstagram.persistence.repository.PlaceRepository">
+
+    <resultMap id="PlaceMap" type="Place" autoMapping="false">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <insert id="create">
+        create (:PLACE {
+            id: #{id},
+            name: #{name}
+        });
+    </insert>
+
+    <select id="findByName" resultMap="PlaceMap">
+        match (a:PLACE)
+        where a.name = #{name}
+        return
+                a.id as id,
+                a.name as name
+        limit 1;
+    </select>
+
+</mapper>
