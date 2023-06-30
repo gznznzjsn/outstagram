@@ -8,7 +8,13 @@ type MySubscription {
 type Account {
     id: ID!
     name: String!
-    description: String
+    description: String!
     isPrivate: Boolean!
     createdAt: String!
+}
+
+type Post {
+    id: ID!
+    photos: [String!]!
+    description: String!
 }

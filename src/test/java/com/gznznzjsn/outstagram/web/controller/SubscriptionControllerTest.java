@@ -45,7 +45,7 @@ class SubscriptionControllerTest {
                 .variable("sourceId", sourceId)
                 .variable("targetId", targetId)
                 .execute();
-        verify(service).subscribe(sourceId, targetId);
+        verify(service).create(sourceId, targetId);
     }
 
     @Test
@@ -60,7 +60,7 @@ class SubscriptionControllerTest {
                 .variable("sourceId", sourceId)
                 .variable("targetId", targetId)
                 .execute();
-        verify(service).unsubscribe(sourceId, targetId);
+        verify(service).delete(sourceId, targetId);
     }
 
     @Test

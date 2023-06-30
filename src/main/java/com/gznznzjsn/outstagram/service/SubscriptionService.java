@@ -13,7 +13,7 @@ public interface SubscriptionService {
      * @param sourceId id of source account
      * @param targetId id of target account
      */
-    void subscribe(UUID sourceId, UUID targetId);
+    void create(UUID sourceId, UUID targetId);
 
     /**
      * Unsubscribe source account from target account.
@@ -21,7 +21,7 @@ public interface SubscriptionService {
      * @param sourceId id of source account
      * @param targetId id of target account
      */
-    void unsubscribe(UUID sourceId, UUID targetId);
+    void delete(UUID sourceId, UUID targetId);
 
     /**
      * Retrieve all subscriptions of account.

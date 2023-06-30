@@ -14,7 +14,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Commenting {
+public class Comment {
 
     private UUID id;
     private Account source;
