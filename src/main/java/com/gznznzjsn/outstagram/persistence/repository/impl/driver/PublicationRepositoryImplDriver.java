@@ -29,14 +29,14 @@ public class PublicationRepositoryImplDriver implements PublicationRepository {
                         "source_id", publication.getSource().getId().toString(),
                         "target_id", publication.getTarget().getId().toString(),
                         "id", publication.getId().toString(),
-                        "createdAt", publication.getCreatedAt().toString(),
+                        "createdAt", publication.getCreatedAt(),
                         "isPinned", publication.getIsPinned()
                 )
         );
-        int amount = result.consume().counters().nodesDeleted();
+        int amount = result.consume().counters().relationshipsCreated();
         if (amount != 1) {
             throw new InternalLogicException(
-                    "This method must delete 1 publication at once,"
+                    "This method must create 1 publication at once,"
                     + " but %d were provided!"
                             .formatted(amount)
             );

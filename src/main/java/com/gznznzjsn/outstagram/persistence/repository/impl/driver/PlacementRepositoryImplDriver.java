@@ -27,10 +27,10 @@ public class PlacementRepositoryImplDriver implements PlacementRepository {
                         "id", placement.getId().toString()
                 )
         );
-        int amount = result.consume().counters().nodesDeleted();
+        int amount = result.consume().counters().relationshipsCreated();
         if (amount != 1) {
             throw new InternalLogicException(
-                    "This method must delete 1 placement at once,"
+                    "This method must create 1 placement at once,"
                     + " but %d were provided!"
                             .formatted(amount)
             );

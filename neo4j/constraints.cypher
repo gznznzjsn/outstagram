@@ -9,7 +9,7 @@ CREATE CONSTRAINT account_description_type IF NOT EXISTS FOR (a:ACCOUNT) REQUIRE
 CREATE CONSTRAINT account_is_private_existence IF NOT EXISTS FOR (a:ACCOUNT) REQUIRE a.is_private IS NOT NULL;
 CREATE CONSTRAINT account_is_private_type IF NOT EXISTS FOR (a:ACCOUNT) REQUIRE a.is_private::BOOLEAN;
 CREATE CONSTRAINT account_created_at_existence IF NOT EXISTS FOR (a:ACCOUNT) REQUIRE a.created_at IS NOT NULL;
-CREATE CONSTRAINT account_created_at_type IF NOT EXISTS FOR (a:ACCOUNT) REQUIRE a.created_at::STRING;
+CREATE CONSTRAINT account_created_at_type IF NOT EXISTS FOR (a:ACCOUNT) REQUIRE a.created_at::LocalDateTime;
 
 //PLACE
 CREATE CONSTRAINT place_id_unique IF NOT EXISTS FOR (a:PLACE) REQUIRE a.id IS UNIQUE;

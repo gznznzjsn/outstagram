@@ -30,7 +30,7 @@ public class AccountRepositoryImplDriver implements AccountRepository {
                         "name", account.getName(),
                         "description", account.getDescription(),
                         "isPrivate", account.getIsPrivate(),
-                        "createdAt", account.getCreatedAt().toString()
+                        "createdAt", account.getCreatedAt()
                 )
         );
     }

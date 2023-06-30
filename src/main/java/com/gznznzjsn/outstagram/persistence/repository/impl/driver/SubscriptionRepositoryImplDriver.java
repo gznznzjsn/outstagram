@@ -9,7 +9,6 @@ import org.neo4j.driver.TransactionContext;
 import org.neo4j.driver.Values;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,10 +32,10 @@ public class SubscriptionRepositoryImplDriver implements SubscriptionRepository 
                         "source_id", subscription.getSource().getId().toString(),
                         "target_id", subscription.getTarget().getId().toString(),
                         "id", subscription.getId().toString(),
-                        "createdAt", subscription.getCreatedAt().toString()
+                        "createdAt", subscription.getCreatedAt()
                 )
         );
-        int amount = result.consume().counters().nodesDeleted();
+        int amount = result.consume().counters().relationshipsCreated();
         if (amount != 1) {
             throw new InternalLogicException(
                     "This method must create 1 subscription at once,"
@@ -105,7 +104,7 @@ public class SubscriptionRepositoryImplDriver implements SubscriptionRepository 
                                                 .name(r.get("SOURCE_name").asString())
                                                 .description(r.get("SOURCE_description").asString())
                                                 .isPrivate(r.get("SOURCE_is_private").asBoolean())
-                                                .createdAt(LocalDateTime.parse(r.get("SOURCE_created_at").asString()))
+                                                .createdAt(r.get("SOURCE_created_at").asLocalDateTime())
                                                 .build()
                                 )
                                 .target(
@@ -114,10 +113,10 @@ public class SubscriptionRepositoryImplDriver implements SubscriptionRepository 
                                                 .name(r.get("TARGET_name").asString())
                                                 .description(r.get("TARGET_description").asString())
                                                 .isPrivate(r.get("TARGET_is_private").asBoolean())
-                                                .createdAt(LocalDateTime.parse(r.get("TARGET_created_at").asString()))
+                                                .createdAt(r.get("TARGET_created_at").asLocalDateTime())
                                                 .build()
                                 )
-                                .createdAt(LocalDateTime.parse(r.get("created_at").asString()))
+                                .createdAt(r.get("created_at").asLocalDateTime())
                                 .build()
                 )
                 .toList();
@@ -157,7 +156,7 @@ public class SubscriptionRepositoryImplDriver implements SubscriptionRepository 
                                                 .name(r.get("SOURCE_name").asString())
                                                 .description(r.get("SOURCE_description").asString())
                                                 .isPrivate(r.get("SOURCE_is_private").asBoolean())
-                                                .createdAt(LocalDateTime.parse(r.get("SOURCE_created_at").asString()))
+                                                .createdAt(r.get("SOURCE_created_at").asLocalDateTime())
                                                 .build()
                                 )
                                 .target(
@@ -166,10 +165,10 @@ public class SubscriptionRepositoryImplDriver implements SubscriptionRepository 
                                                 .name(r.get("TARGET_name").asString())
                                                 .description(r.get("TARGET_description").asString())
                                                 .isPrivate(r.get("TARGET_is_private").asBoolean())
-                                                .createdAt(LocalDateTime.parse(r.get("TARGET_created_at").asString()))
+                                                .createdAt(r.get("TARGET_created_at").asLocalDateTime())
                                                 .build()
                                 )
-                                .createdAt(LocalDateTime.parse(r.get("created_at").asString()))
+                                .createdAt(r.get("created_at").asLocalDateTime())
                                 .build()
                 )
                 .toList();
