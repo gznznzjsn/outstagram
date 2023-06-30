@@ -21,7 +21,7 @@ public class SubscriptionRepositoryImplDriver implements SubscriptionRepository 
         String query = """
                 MATCH (a:ACCOUNT), (b:ACCOUNT)
                 WHERE a.id = $source_id AND b.id = $target_id
-                CREATE (a)-[:SUBSCRIBED {
+                CREATE (a)-[:SUBSCRIBED_TO {
                         id: $id,
                         created_at: $createdAt
                 }]->(b)
@@ -49,7 +49,7 @@ public class SubscriptionRepositoryImplDriver implements SubscriptionRepository 
     public void delete(Subscription subscription, TransactionContext tx) {
         //language=Cypher
         String query = """
-                MATCH (a:ACCOUNT) -[s:SUBSCRIBED]-> (b:ACCOUNT)
+                MATCH (a:ACCOUNT) -[s:SUBSCRIBED_TO]-> (b:ACCOUNT)
                 WHERE a.id = $source_id AND b.id = $target_id
                 DELETE s
                 """;
@@ -74,7 +74,7 @@ public class SubscriptionRepositoryImplDriver implements SubscriptionRepository 
     public List<Subscription> readSubscriptions(UUID accountId, TransactionContext tx) {
         //language=Cypher
         String query = """
-                MATCH (a:ACCOUNT) -[s:SUBSCRIBED]-> (b:ACCOUNT)
+                MATCH (a:ACCOUNT) -[s:SUBSCRIBED_TO]-> (b:ACCOUNT)
                 WHERE a.id = $accountId
                 RETURN
                     s.id AS id,
@@ -126,7 +126,7 @@ public class SubscriptionRepositoryImplDriver implements SubscriptionRepository 
     public List<Subscription> readSubscribers(UUID accountId, TransactionContext tx) {
         //language=Cypher
         String query = """
-                MATCH (a:ACCOUNT) -[s:SUBSCRIBED]-> (b:ACCOUNT)
+                MATCH (a:ACCOUNT) -[s:SUBSCRIBED_TO]-> (b:ACCOUNT)
                 WHERE b.id = $accountId
                 RETURN
                     s.id AS id,
