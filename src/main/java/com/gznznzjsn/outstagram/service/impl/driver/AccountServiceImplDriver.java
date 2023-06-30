@@ -1,4 +1,4 @@
-package com.gznznzjsn.outstagram.service.impl;
+package com.gznznzjsn.outstagram.service.impl.driver;
 
 import com.gznznzjsn.outstagram.model.node.Account;
 import com.gznznzjsn.outstagram.persistence.repository.AccountRepository;
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class AccountServiceImpl implements AccountService {
+public class AccountServiceImplDriver implements AccountService {
 
     private final Neo4jCustomDriver driver;
     private final AccountRepository repository;

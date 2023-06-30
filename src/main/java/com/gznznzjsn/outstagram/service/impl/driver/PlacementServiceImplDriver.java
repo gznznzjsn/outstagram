@@ -1,4 +1,4 @@
-package com.gznznzjsn.outstagram.service.impl;
+package com.gznznzjsn.outstagram.service.impl.driver;
 
 import com.gznznzjsn.outstagram.model.node.Place;
 import com.gznznzjsn.outstagram.model.node.Post;
@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class PlacementServiceImpl implements PlacementService {
+public class PlacementServiceImplDriver implements PlacementService {
 
     private final PlacementRepository repository;
     private final PlaceService placeService;

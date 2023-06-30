@@ -1,4 +1,4 @@
-package com.gznznzjsn.outstagram.service.impl;
+package com.gznznzjsn.outstagram.service.impl.driver;
 
 import com.gznznzjsn.outstagram.model.node.Post;
 import com.gznznzjsn.outstagram.persistence.repository.Neo4jCustomDriver;
@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class PostServiceImpl implements PostService {
+public class PostServiceImplDriver implements PostService {
 
     private final Neo4jCustomDriver driver;
     private final PostRepository repository;

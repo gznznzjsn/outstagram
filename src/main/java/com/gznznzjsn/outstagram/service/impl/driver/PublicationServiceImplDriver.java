@@ -1,4 +1,4 @@
-package com.gznznzjsn.outstagram.service.impl;
+package com.gznznzjsn.outstagram.service.impl.driver;
 
 import com.gznznzjsn.outstagram.model.node.Account;
 import com.gznznzjsn.outstagram.model.node.Post;
@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class PublicationServiceImpl implements PublicationService {
+public class PublicationServiceImplDriver implements PublicationService {
 
     private final PublicationRepository repository;
 

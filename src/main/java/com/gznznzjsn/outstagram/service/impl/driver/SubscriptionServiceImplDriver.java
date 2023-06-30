@@ -1,4 +1,4 @@
-package com.gznznzjsn.outstagram.service.impl;
+package com.gznznzjsn.outstagram.service.impl.driver;
 
 import com.gznznzjsn.outstagram.model.exception.IllegalActionException;
 import com.gznznzjsn.outstagram.model.node.Account;
@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class SubscriptionServiceImpl implements SubscriptionService {
+public class SubscriptionServiceImplDriver implements SubscriptionService {
 
     private final Neo4jCustomDriver driver;
     private final SubscriptionRepository repository;

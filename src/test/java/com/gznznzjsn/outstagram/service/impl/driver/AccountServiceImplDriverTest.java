@@ -1,4 +1,4 @@
-package com.gznznzjsn.outstagram.service.impl;
+package com.gznznzjsn.outstagram.service.impl.driver;
 
 import com.gznznzjsn.outstagram.model.node.Account;
 import com.gznznzjsn.outstagram.persistence.repository.AccountRepository;
@@ -11,20 +11,18 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.assertArg;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-class AccountServiceImplTest {
+class AccountServiceImplDriverTest {
 
     @Mock
     private AccountRepository repository;
 
     @InjectMocks
-    private AccountServiceImpl service;
+    private AccountServiceImplDriver service;
 
     @Test
     void createAccountWithUnsetIdAndCreatedAt() {

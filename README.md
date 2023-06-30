@@ -13,6 +13,7 @@ Demo project, clone of Instagram.
 
 ## Relationships
 
+* Converters
 * Publication (PUBLISHED) (date, pinned)
 * Like (LIKED) (date)
 * Placement (PLACED) (date)

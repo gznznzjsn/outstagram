@@ -1,4 +1,4 @@
-package com.gznznzjsn.outstagram.service.impl;
+package com.gznznzjsn.outstagram.service.impl.driver;
 
 import com.gznznzjsn.outstagram.model.exception.IllegalActionException;
 import com.gznznzjsn.outstagram.model.node.Account;
@@ -14,23 +14,19 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.assertArg;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class SubscriptionServiceImplTest {
+class SubscriptionServiceImplDriverTest {
 
     @Mock
     private SubscriptionRepository repository;
 
     @InjectMocks
-    private SubscriptionServiceImpl service;
+    private SubscriptionServiceImplDriver service;
 
     @Test
     void subscribeToYourself() {

@@ -1,4 +1,4 @@
-package com.gznznzjsn.outstagram.service.impl;
+package com.gznznzjsn.outstagram.service.impl.driver;
 
 import com.gznznzjsn.outstagram.model.node.Place;
 import com.gznznzjsn.outstagram.persistence.repository.PlaceRepository;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class PlaceServiceImpl implements PlaceService {
+public class PlaceServiceImplDriver implements PlaceService {
 
     private final PlaceRepository repository;
 
