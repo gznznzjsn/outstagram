@@ -1,11 +1,10 @@
 package com.gznznzjsn.outstagram.persistence.repository;
 
 import com.gznznzjsn.outstagram.model.node.Post;
-import org.apache.ibatis.annotations.Mapper;
+import org.neo4j.driver.TransactionContext;
 
-@Mapper
 public interface PostRepository {
 
-    void create(Post post);
+    void create(Post post, TransactionContext tx);
 
 }

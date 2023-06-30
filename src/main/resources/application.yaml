@@ -1,16 +1,6 @@
 spring:
   config:
     import: optional:.env[.properties]
-  datasource:
-    driver-class-name: org.neo4j.jdbc.http.HttpDriver
-    name: ${APP_DATASOURCE_NAME}
-    password: ${APP_DATASOURCE_PASSWORD}
-    url: ${APP_DATASOURCE_URL}
   graphql:
     graphiql:
       enabled: true
-
-mybatis:
-  config-location: classpath:db/mybatis/config.xml
-  mapper-locations: classpath:db/mybatis/mapper/*.xml
-  type-aliases-package: com.gznznzjsn.outstagram.model

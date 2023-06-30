@@ -1,29 +1,26 @@
 package com.gznznzjsn.outstagram.persistence.repository;
 
 import com.gznznzjsn.outstagram.model.relationship.Subscription;
-import org.apache.ibatis.annotations.Mapper;
+import org.neo4j.driver.TransactionContext;
 
 import java.util.List;
 import java.util.UUID;
 
-@Mapper
 public interface SubscriptionRepository {
 
     /**
      * Create subscription relationship.
      *
      * @param subscription relationship to be created
-     * @return number of created subscriptions
      */
-    Long create(Subscription subscription);
+    void create(Subscription subscription, TransactionContext tx);
 
     /**
      * Delete subscription relationship.
      *
      * @param subscription relationship to be deleted
-     * @return number of deleted subscriptions
      */
-    Long delete(Subscription subscription);
+    void delete(Subscription subscription, TransactionContext tx);
 
     /**
      * Read all subscriptions of account.
@@ -31,7 +28,7 @@ public interface SubscriptionRepository {
      * @param accountId id of account
      * @return all subscriptions of account
      */
-    List<Subscription> readSubscriptions(UUID accountId);
+    List<Subscription> readSubscriptions(UUID accountId, TransactionContext tx);
 
     /**
      * Read all subscribers of account.
@@ -39,6 +36,6 @@ public interface SubscriptionRepository {
      * @param accountId id of account
      * @return all subscribers of account
      */
-    List<Subscription> readSubscribers(UUID accountId);
+    List<Subscription> readSubscribers(UUID accountId, TransactionContext tx);
 
 }

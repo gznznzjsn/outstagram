@@ -1,11 +1,10 @@
 package com.gznznzjsn.outstagram.persistence.repository;
 
 import com.gznznzjsn.outstagram.model.relationship.Placement;
-import org.apache.ibatis.annotations.Mapper;
+import org.neo4j.driver.TransactionContext;
 
-@Mapper
 public interface PlacementRepository {
 
-    Long create(Placement placement);
+    void create(Placement placement, TransactionContext tx);
 
 }

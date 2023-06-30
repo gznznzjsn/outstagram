@@ -1,11 +1,10 @@
 package com.gznznzjsn.outstagram.persistence.repository;
 
 import com.gznznzjsn.outstagram.model.relationship.Publication;
-import org.apache.ibatis.annotations.Mapper;
+import org.neo4j.driver.TransactionContext;
 
-@Mapper
 public interface PublicationRepository {
 
-    Long create(Publication publication);
+    void create(Publication publication, TransactionContext tx);
 
 }

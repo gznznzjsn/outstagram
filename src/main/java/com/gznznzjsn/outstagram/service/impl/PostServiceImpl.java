@@ -1,13 +1,14 @@
 package com.gznznzjsn.outstagram.service.impl;
 
 import com.gznznzjsn.outstagram.model.node.Post;
+import com.gznznzjsn.outstagram.persistence.repository.Neo4jCustomDriver;
 import com.gznznzjsn.outstagram.persistence.repository.PostRepository;
 import com.gznznzjsn.outstagram.service.PlacementService;
 import com.gznznzjsn.outstagram.service.PostService;
 import com.gznznzjsn.outstagram.service.PublicationService;
 import lombok.RequiredArgsConstructor;
+import org.neo4j.driver.Session;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
+    private final Neo4jCustomDriver driver;
     private final PostRepository repository;
     private final PlacementService placementService;
     //    private final TaggingService taggingService;
@@ -23,14 +25,17 @@ public class PostServiceImpl implements PostService {
 
 
     @Override
-    @Transactional
     public void create(UUID accountId, Post post, String placeName, List<String> tagNames) {
-        UUID postId = UUID.randomUUID();
-        post.setId(postId);
-        repository.create(post);
-        publicationService.create(accountId, postId);
-        placementService.create(postId, placeName);
-        for (String tagName : tagNames) {
+        try (Session session = driver.getSession()) {
+            session.executeWriteWithoutResult(tx -> {
+                UUID postId = UUID.randomUUID();
+                post.setId(postId);
+                repository.create(post, tx);
+                publicationService.create(accountId, postId, tx);
+                placementService.create(postId, placeName, tx);
+                for (String tagName : tagNames) {
+                }
+            });
         }
     }
 
