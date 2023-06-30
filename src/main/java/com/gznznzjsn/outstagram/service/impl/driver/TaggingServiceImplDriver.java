@@ -20,7 +20,11 @@ public class TaggingServiceImplDriver implements TaggingService {
     private final TaggingRepository repository;
 
     @Override
-    public void create(UUID postId, String tagName, TransactionContext tx) {
+    public void create(
+            final UUID postId,
+            final String tagName,
+            final TransactionContext tx
+    ) {
         Tag tag = service.retrieveOrCreateAndRetrieve(tagName, tx);
         var tagging = Tagging.builder()
                 .id(UUID.randomUUID())

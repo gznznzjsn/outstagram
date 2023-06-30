@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public class PlacementRepositoryImplDriver implements PlacementRepository {
 
     @Override
-    public void create(Placement placement, TransactionContext tx) {
+    public void create(final Placement placement, final TransactionContext tx) {
         //language=Cypher
         String query = """
                 MATCH (a:POST), (b:PLACE)

@@ -16,7 +16,9 @@ public class PlaceServiceImplDriver implements PlaceService {
     private final PlaceRepository repository;
 
     @Override
-    public Place retrieveOrCreateAndRetrieve(String name, TransactionContext tx) {
+    public Place retrieveOrCreateAndRetrieve(
+           final String name, final TransactionContext tx
+    ) {
         return repository.findByName(name, tx)
                 .orElseGet(() -> {
                     Place place = new Place(UUID.randomUUID(), name);

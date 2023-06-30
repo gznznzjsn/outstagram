@@ -16,7 +16,10 @@ public class TagServiceImplDriver implements TagService {
     private final TagRepository repository;
 
     @Override
-    public Tag retrieveOrCreateAndRetrieve(String name, TransactionContext tx) {
+    public Tag retrieveOrCreateAndRetrieve(
+            final String name,
+            final TransactionContext tx
+    ) {
         return repository.findByName(name, tx)
                 .orElseGet(() -> {
                     Tag tag = new Tag(UUID.randomUUID(), name);

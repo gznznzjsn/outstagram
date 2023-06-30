@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 public class AccountRepositoryImplDriver implements AccountRepository {
 
     @Override
-    public void create(Account account, TransactionContext tx) {
+    public void create(
+            final Account account, final TransactionContext tx
+    ) {
         //language=Cypher
         String query = """
                 CREATE (

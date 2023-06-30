@@ -20,7 +20,11 @@ public class PlacementServiceImplDriver implements PlacementService {
     private final PlaceService placeService;
 
     @Override
-    public void create(UUID postId, String placeName, TransactionContext tx) {
+    public void create(
+            final UUID postId,
+            final String placeName,
+            final TransactionContext tx
+    ) {
         Place place = placeService.retrieveOrCreateAndRetrieve(placeName, tx);
         var placement = Placement.builder()
                 .id(UUID.randomUUID())

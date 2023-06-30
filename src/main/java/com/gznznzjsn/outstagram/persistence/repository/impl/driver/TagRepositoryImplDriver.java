@@ -15,7 +15,10 @@ import java.util.UUID;
 public class TagRepositoryImplDriver implements TagRepository {
 
     @Override
-    public Optional<Tag> findByName(String name, TransactionContext tx) {
+    public Optional<Tag> findByName(
+            final String name,
+            final TransactionContext tx
+    ) {
         //language=Cypher
         String query = """
                 MATCH (a:TAG)

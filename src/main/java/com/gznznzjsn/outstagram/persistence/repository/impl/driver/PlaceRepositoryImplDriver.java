@@ -15,7 +15,9 @@ import java.util.UUID;
 public class PlaceRepositoryImplDriver implements PlaceRepository {
 
     @Override
-    public Optional<Place> findByName(String name, TransactionContext tx) {
+    public Optional<Place> findByName(
+            final String name, final TransactionContext tx
+    ) {
         //language=Cypher
         String query = """
                 MATCH (a:PLACE)
@@ -41,7 +43,9 @@ public class PlaceRepositoryImplDriver implements PlaceRepository {
     }
 
     @Override
-    public void create(Place place, TransactionContext tx) {
+    public void create(
+            final Place place, final TransactionContext tx
+    ) {
         //language=Cypher
         String query = """
                  CREATE (:PLACE {

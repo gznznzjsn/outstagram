@@ -25,24 +25,25 @@ public class SubscriptionServiceImplDriver implements SubscriptionService {
     public void create(final UUID sourceId, final UUID targetId) {
         try (Session session = driver.getSession()) {
             session.executeWriteWithoutResult(tx -> {
-                        if (sourceId.equals(targetId)) {
-                            throw new IllegalActionException("You can't subscribe to yourself");
-                        }
-                        var source = Account.builder()
-                                .id(sourceId)
-                                .build();
-                        var target = Account.builder()
-                                .id(targetId)
-                                .build();
-                        var subscription = Subscription.builder()
-                                .id(UUID.randomUUID())
-                                .source(source)
-                                .target(target)
-                                .createdAt(LocalDateTime.now())
-                                .build();
-                        repository.create(subscription, tx);
-                    }
-            );
+                if (sourceId.equals(targetId)) {
+                    throw new IllegalActionException(
+                            "You can't subscribe to yourself"
+                    );
+                }
+                var source = Account.builder()
+                        .id(sourceId)
+                        .build();
+                var target = Account.builder()
+                        .id(targetId)
+                        .build();
+                var subscription = Subscription.builder()
+                        .id(UUID.randomUUID())
+                        .source(source)
+                        .target(target)
+                        .createdAt(LocalDateTime.now())
+                        .build();
+                repository.create(subscription, tx);
+            });
         }
     }
 
@@ -50,21 +51,20 @@ public class SubscriptionServiceImplDriver implements SubscriptionService {
     public void delete(final UUID sourceId, final UUID targetId) {
         try (Session session = driver.getSession()) {
             session.executeWriteWithoutResult(tx -> {
-                        var source = Account.builder()
-                                .id(sourceId)
-                                .build();
-                        var target = Account.builder()
-                                .id(targetId)
-                                .build();
-                        var subscription = Subscription.builder()
-                                .id(UUID.randomUUID())
-                                .source(source)
-                                .target(target)
-                                .createdAt(LocalDateTime.now())
-                                .build();
-                        repository.delete(subscription, tx);
-                    }
-            );
+                var source = Account.builder()
+                        .id(sourceId)
+                        .build();
+                var target = Account.builder()
+                        .id(targetId)
+                        .build();
+                var subscription = Subscription.builder()
+                        .id(UUID.randomUUID())
+                        .source(source)
+                        .target(target)
+                        .createdAt(LocalDateTime.now())
+                        .build();
+                repository.delete(subscription, tx);
+            });
         }
     }
 

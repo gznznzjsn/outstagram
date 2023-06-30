@@ -12,7 +12,9 @@ import org.springframework.stereotype.Repository;
 public class TaggingRepositoryImplDriver implements TaggingRepository {
 
     @Override
-    public void create(Tagging tagging, TransactionContext tx) {
+    public void create(
+            final Tagging tagging, final TransactionContext tx
+    ) {
         //language=Cypher
         String query = """
                 MATCH (a:POST), (b:TAG)

@@ -12,7 +12,9 @@ import org.springframework.stereotype.Repository;
 public class PublicationRepositoryImplDriver implements PublicationRepository {
 
     @Override
-    public void create(Publication publication, TransactionContext tx) {
+    public void create(
+            final Publication publication, final TransactionContext tx
+    ) {
         //language=Cypher
         String query = """
                 MATCH (a:ACCOUNT), (b:POST)

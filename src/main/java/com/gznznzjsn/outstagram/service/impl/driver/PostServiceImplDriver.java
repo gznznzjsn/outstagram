@@ -25,7 +25,10 @@ public class PostServiceImplDriver implements PostService {
     private final PublicationService publicationService;
 
     @Override
-    public void create(UUID accountId, Post post, String placeName, List<String> tagNames) {
+    public void create(
+            final UUID accountId, final Post post, final String placeName,
+            final List<String> tagNames
+    ) {
         try (Session session = driver.getSession()) {
             session.executeWriteWithoutResult(tx -> {
                 UUID postId = UUID.randomUUID();

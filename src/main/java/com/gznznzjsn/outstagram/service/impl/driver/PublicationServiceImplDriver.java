@@ -19,7 +19,11 @@ public class PublicationServiceImplDriver implements PublicationService {
     private final PublicationRepository repository;
 
     @Override
-    public void create(UUID accountId, UUID postId, TransactionContext tx) {
+    public void create(
+            final UUID accountId,
+            final UUID postId,
+            final TransactionContext tx
+    ) {
         var publication = Publication.builder()
                 .id(UUID.randomUUID())
                 .source(

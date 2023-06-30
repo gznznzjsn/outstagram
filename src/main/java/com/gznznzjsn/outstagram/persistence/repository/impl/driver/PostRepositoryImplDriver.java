@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public class PostRepositoryImplDriver implements PostRepository {
 
     @Override
-    public void create(Post post, TransactionContext tx) {
+    public void create(final Post post, final TransactionContext tx) {
         //language=Cypher
         String query = """
                 CREATE (:POST {

@@ -7,6 +7,9 @@ import java.util.UUID;
 
 public interface PostService {
 
-    void create(UUID accountId, Post post, String placeName, List<String> tagNames);
+    void create(
+            UUID accountId, Post post, String placeName,
+            List<String> tagNames
+    );
 
 }

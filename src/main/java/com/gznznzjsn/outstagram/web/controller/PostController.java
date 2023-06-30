@@ -22,10 +22,10 @@ public class PostController {
 
     @MutationMapping(name = "createPost")
     public void create(
-            @Argument UUID accountId,
-            @Arguments PostDto dto,
-            @Argument String placeName,
-            @Argument List<String> tagNames
+            final @Argument UUID accountId,
+            final @Arguments PostDto dto,
+            final @Argument String placeName,
+            final @Argument List<String> tagNames
     ) {
         Post post = mapper.toModel(dto);
         service.create(accountId, post, placeName, tagNames);
